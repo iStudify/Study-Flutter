@@ -32,7 +32,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final _biggerFont = const TextStyle(fontSize: 18.0);
 
+  int _itemCount = 4;
+
   void _incrementCounter() {
+    setState(() {
+      _itemCount++;
+      _itemCount++;
+    });
   }
 
   Widget _buildSuggestions() {
@@ -47,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
         }
         return _buildRow(_suggestions[index]);
       },
-      itemCount: 20,
+      itemCount: _itemCount,
     );
   }
 
