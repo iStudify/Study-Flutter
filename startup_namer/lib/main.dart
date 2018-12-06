@@ -10,9 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Startup Name Generator',
-      theme: new ThemeData(
-        primaryColor: Colors.white
-      ),
+      theme: new ThemeData(primaryColor: Colors.red),
       home: new RandomWords(),
     );
   }
@@ -34,7 +32,10 @@ class RandomWordsState extends State<RandomWords> {
       appBar: new AppBar(
         title: const Text('Startup Name Generator'),
         actions: <Widget>[
-          new IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved,)
+          new IconButton(
+            icon: const Icon(Icons.list),
+            onPressed: _pushSaved,
+          )
         ],
       ),
       body: _buildSuggestions(),
@@ -42,37 +43,29 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   void _pushSaved() {
-    Navigator.of(context).push(
-      new MaterialPageRoute<void>(
-        builder: (BuildContext context) {
+    Navigator.of(context).push(new MaterialPageRoute<void>(
+      builder: (BuildContext context) {
+        final Iterable<ListTile> tiles = _saved.map(
+          (WordPair pair) {
+            return new ListTile(
+              title: new Text(pair.asPascalCase, style: _biggerFont),
+            );
+          },
+        );
 
-          final Iterable<ListTile> tiles = _saved.map(
-            (WordPair pair) {
-              return new ListTile(
-                title: new Text(
-                  pair.asPascalCase,
-                  style: _biggerFont
-                ),
-              );
-            },
-          );
+        final List<Widget> divided = ListTile.divideTiles(
+          context: context,
+          tiles: tiles,
+        ).toList();
 
-          final List<Widget> divided = ListTile
-          .divideTiles(
-            context: context,
-            tiles: tiles,
-          )
-          .toList();
-
-          return new Scaffold(
-            appBar: new AppBar(
-              title: const Text('Saved Suggestions'),
-            ),
-            body: new ListView(children: divided),
-          );  
-        },
-      )
-    );
+        return new Scaffold(
+          appBar: new AppBar(
+            title: const Text('Saved Suggestions'),
+          ),
+          body: new ListView(children: divided),
+        );
+      },
+    ));
   }
 
   Widget _buildSuggestions() {
