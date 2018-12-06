@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+
+import "category.dart";
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Category"),
+        ),
+        body: Center(
+          child: Category(
+            icon: Icons.settings,
+            selectColor: Colors.redAccent,
+            title: "Hello, World",
+          ),
+        ),
+      ),
+    );
+  }
+}
