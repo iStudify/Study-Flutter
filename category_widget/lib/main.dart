@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import "category.dart";
+import "category_route.dart";
 
 void main() => runApp(MyApp());
 
@@ -13,18 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Category"),
-        ),
-        body: Center(
-          child: Category(
-            icon: Icons.settings,
-            selectColor: Colors.redAccent,
-            title: "Hello, World",
-          ),
-        ),
-      ),
+      home: CategoryRoute(),
     );
   }
 }
